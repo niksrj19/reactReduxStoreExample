@@ -15,7 +15,18 @@ class AddUser extends React.Component {
             this.setState({ [event.target.name]: event.target.value })
           }
         />
-        <button onClick={() => this.props.addUser(this.state)}>Add</button>
+        <button
+          onClick={() => {
+            if (
+              this.state !== null &&
+              this.state.username !== undefined &&
+              this.state.username !== ""
+            )
+              this.props.addUser(this.state);
+          }}
+        >
+          Add
+        </button>
         <button onClick={() => this.props.deletefromlast()}>
           Delete User from last
         </button>
@@ -28,7 +39,13 @@ class AddUser extends React.Component {
         />
         <button
           onClick={() => {
-            this.props.deletefromname(this.state);
+            //console.log(this.state);
+            if (
+              this.state !== null &&
+              this.state.deletename !== undefined &&
+              this.state.deletename !== ""
+            )
+              this.props.deletefromname(this.state);
           }}
         >
           Delete User from name

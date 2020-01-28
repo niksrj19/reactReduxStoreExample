@@ -1,2 +1,0 @@
-# reactReduxStoreExample
-Created with CodeSandbox

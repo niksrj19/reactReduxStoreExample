@@ -1,0 +1,15 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.delete {
+  color: red;
+}
+.flexContainer {
+  display: flex;
+  justify-content: center;
+  border: 1px solid palevioletred;
+  width: 100%;
+
+  align-items: center;
+}

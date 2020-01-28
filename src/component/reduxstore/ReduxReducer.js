@@ -67,6 +67,14 @@ function ReduxReducer(state = inititalState, action) {
       }
     }
 
+    case "EDIT_USER": {
+      const returnState = JSON.parse(JSON.stringify(state));
+
+      const userList = JSON.parse(JSON.stringify(returnState.usersDetails));
+
+      return returnState;
+    }
+
     default:
       return state;
   }

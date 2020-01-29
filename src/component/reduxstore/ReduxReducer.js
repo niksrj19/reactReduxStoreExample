@@ -2,13 +2,16 @@ const inititalState = {
   username: "Nitesh",
   password: "Nitesh",
   isLoggedIn: false,
-  usersDetails: []
+  usersDetails: [],
+  editUser: "",
+  editUserName: ""
 };
 
 function ReduxReducer(state = inititalState, action) {
   switch (action.type) {
     case "LOGIN": {
       //  console.log(state, inititalState);
+
       if (
         state.username === "Nitesh" /*action.payload.username && */ &&
         state.password === "Nitesh" /*action.payload.password */
@@ -68,9 +71,14 @@ function ReduxReducer(state = inititalState, action) {
     }
 
     case "EDIT_USER": {
-      const returnState = JSON.parse(JSON.stringify(state));
+      let returnState = JSON.parse(JSON.stringify(state));
 
       const userList = JSON.parse(JSON.stringify(returnState.usersDetails));
+
+      const edit_user_id = action.payload.id;
+      const editUserName = userList[edit_user_id];
+
+      returnState = { ...returnState, editUserName, editUser: edit_user_id };
 
       return returnState;
     }

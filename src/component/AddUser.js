@@ -3,8 +3,13 @@ import { connect } from "react-redux";
 import addUsers from "./reduxstore/AddUsers";
 import deleteFromLast from "./reduxstore/DeleteFromLast";
 import deleteFromName from "./reduxstore/DeleteFromName";
+import editUser from "./reduxstore/EditUser";
 import "../css/styles.css";
 class AddUser extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   render() {
     return (
       <div>
@@ -15,6 +20,7 @@ class AddUser extends React.Component {
             this.setState({ [event.target.name]: event.target.value })
           }
         />
+
         <button
           onClick={() => {
             if (
@@ -53,11 +59,16 @@ class AddUser extends React.Component {
 
         {this.props.usersDetails != null
           ? this.props.usersDetails.map((items, id) => {
-              //console.log(this.props.usersDetails);
+              //console.log("ITEM=", items, id);
               return (
                 <div key={id} className="flexContainer">
                   <div>{items.username}</div>
-                  <div className="delete">X</div>
+                  <button
+                    onClick={() => this.props.edituser({ id })}
+                    className="delete"
+                  >
+                    X
+                  </button>
                 </div>
               );
             })
@@ -73,7 +84,8 @@ const mapDispatchToProps = dispatch => {
   return {
     deletefromlast: () => dispatch(deleteFromLast()),
     addUser: user => dispatch(addUsers(user)),
-    deletefromname: user => dispatch(deleteFromName(user))
+    deletefromname: user => dispatch(deleteFromName(user)),
+    edituser: id => dispatch(editUser(id))
   };
 };
 
